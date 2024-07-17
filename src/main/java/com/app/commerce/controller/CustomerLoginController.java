@@ -1,6 +1,7 @@
 package com.app.commerce.controller;
 
 import com.app.commerce.dbconnect.ConnectDB;
+import com.app.commerce.services.CustomerService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,6 +33,7 @@ public class CustomerLoginController {
 
     public Stage stage;
 
+    public CustomerService customerService = new CustomerService();
     @FXML
     public void openMainMenu() throws IOException {
         stage = (Stage) closeBtn.getScene().getWindow();
@@ -53,7 +55,7 @@ public class CustomerLoginController {
         Alert message = new Alert(Alert.AlertType.INFORMATION);
         Alert error = new Alert(Alert.AlertType.ERROR);
 
-        if (customerAuthentication(email, password)){
+        if (customerService.customerAuthentication(email, password)){
             stage = (Stage) loginBtn.getScene().getWindow();
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/app/commerce/CustomerDashboard.fxml")));
             stage.setScene(new Scene(root, 1000, 600));
@@ -66,18 +68,5 @@ public class CustomerLoginController {
 
     }
 
-    public boolean customerAuthentication(String email, String password) throws SQLException {
-        boolean login = false;
-        Connection connect = ConnectDB.connect();
-        String sql = "Select * from customer where customer_email = ? AND customer_password = ?";
-        PreparedStatement statement = connect.prepareStatement(sql);
-        statement.setString(1, email);
-        statement.setString(2, password);
-        ResultSet result = statement.executeQuery();
-        while (result.next()){
-            login = true;
-            customerId = result.getInt("customer_id");
-        }
-        return login;
-    }
+
 }
