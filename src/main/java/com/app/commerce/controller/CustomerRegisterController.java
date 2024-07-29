@@ -41,8 +41,6 @@ public class CustomerRegisterController {
     }
 
 
-
-    @FXML
     public void createNewCustomer()throws SQLException{
         String customername = customerName.getText();
         String customeremail = customerEmail.getText();
