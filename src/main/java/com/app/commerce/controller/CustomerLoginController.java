@@ -33,7 +33,8 @@ public class CustomerLoginController {
 
     public Stage stage;
 
-    public CustomerService customerService = new CustomerService();
+    CustomerService customerService = new CustomerService();
+
     @FXML
     public void openMainMenu() throws IOException {
         stage = (Stage) closeBtn.getScene().getWindow();

@@ -31,7 +31,7 @@
       <ImageView fx:id="productImage" fitHeight="150.0" fitWidth="200.0" layoutX="41.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="productName" layoutX="41.0" layoutY="179.0" prefHeight="17.0" prefWidth="82.0" text="Product name" />
       <Label fx:id="productPrice" layoutX="123.0" layoutY="179.0" prefHeight="17.0" prefWidth="82.0" text="Price" />
-      <Button fx:id="addToCart" layoutX="90.0" layoutY="202.0" mnemonicParsing="false" onAction="#addProductToCart" text="Add to cart">
+      <Button fx:id="addToCart" layoutX="90.0" layoutY="202.0" mnemonicParsing="false"  text="Add to cart">
          <font>
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
