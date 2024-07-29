@@ -48,7 +48,7 @@
             <Font name="Arial Black" size="11.0" />
          </font>
       </Button>
-      <Button fx:id="adminLogOutBtn" layoutX="730.0" layoutY="528.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="106.0" style="-fx-background-color: #C41717;" text="Log Out" textFill="WHITE">
+      <Button fx:id="adminLogOutBtn" layoutX="730.0" layoutY="528.0" mnemonicParsing="false" onAction="#adminLogOut" prefHeight="53.0" prefWidth="106.0" style="-fx-background-color: #C41717;" text="Log Out" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

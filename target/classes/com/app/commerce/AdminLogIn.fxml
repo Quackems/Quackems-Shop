@@ -16,7 +16,7 @@
             <Font name="Arial Rounded MT Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="128.0" layoutY="91.0" prefHeight="23.0" prefWidth="40.0" text="Email:" textFill="WHITE">
+      <Label layoutX="94.0" layoutY="91.0" prefHeight="23.0" prefWidth="74.0" text="Username:" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
