@@ -26,7 +26,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="adminLogin" layoutX="209.0" layoutY="230.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="182.0" text="Log In">
+      <Button fx:id="adminLoginBtn" layoutX="209.0" layoutY="230.0" mnemonicParsing="false" onAction="#adminLogin" prefHeight="72.0" prefWidth="182.0" text="Log In">
          <font>
             <Font name="Arial Rounded MT Bold" size="25.0" />
          </font>
