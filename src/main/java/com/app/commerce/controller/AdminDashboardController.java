@@ -13,7 +13,7 @@ import java.util.Objects;
 public class AdminDashboardController {
 
     @FXML
-    Button addProductBtn;
+    Button adminAddProductBtn;
     @FXML
     Button deleteProductBtn;
     @FXML
@@ -31,6 +31,13 @@ public class AdminDashboardController {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/app/commerce/AdminLogin.fxml")));
         stage.setScene(new Scene(root, 600, 400));
         stage.setTitle("Admin Login");
+    }
+    @FXML
+    public void adminAddProduct() throws IOException {
+        Stage stage = (Stage) adminAddProductBtn.getScene().getWindow();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/app/commerce/AddProduct.fxml")));
+        stage.setScene(new Scene(root, 800, 600));
+        stage.setTitle("Add product");
     }
 
 }
