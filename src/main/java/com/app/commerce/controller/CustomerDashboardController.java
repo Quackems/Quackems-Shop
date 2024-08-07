@@ -25,6 +25,10 @@ public class CustomerDashboardController implements Initializable {
     @FXML
     ImageView productImage;
     @FXML
+    ImageView productImage1;
+    @FXML
+    ImageView productImage2;
+    @FXML
     Label productName;
     @FXML
     Label productPrice;
@@ -54,5 +58,7 @@ public class CustomerDashboardController implements Initializable {
         File file = new File("images/apple.png");
         Image image = new Image(file.toURI().toString());
         productImage.setImage(image);
+        productImage1.setImage(image);
+        productImage2.setImage(image);
     }
 }
