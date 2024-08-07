@@ -50,8 +50,8 @@ public class AddProductController {
         }
         String sql = "insert into product values(null,?,?,?,?)";
         PreparedStatement statement = ConnectDB.connect().prepareStatement(sql);
-        statement.setString(1,productprice);
-        statement.setString(2,productquantity);
+        statement.setDouble(1,Double.parseDouble(productprice));
+        statement.setInt(2, Integer.parseInt(productquantity));
         statement.setString(3,productname);
         statement.setString(4,productdescription);
         statement.execute();
