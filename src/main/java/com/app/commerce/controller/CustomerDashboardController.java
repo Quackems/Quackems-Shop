@@ -39,7 +39,12 @@ public class CustomerDashboardController implements Initializable {
     @FXML
     Label productPrice;
     @FXML
-    Button addToCart;
+    Button addToCart1;
+    @FXML
+    Button addToCart2;
+    @FXML
+    Button addToCart3;
+
     @FXML
     GridPane productGrid;
 
@@ -72,6 +77,7 @@ public class CustomerDashboardController implements Initializable {
         productImage2.setImage(image);
         try {
             System.out.println(productService.getAllProduct());
+            loadProduct();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -87,6 +93,20 @@ public class CustomerDashboardController implements Initializable {
         for (Product product: allProducts){
             VBox productBox = new VBox();
             productImage.setImage(image);
+            productImage.setFitHeight(150);
+            productImage.setFitWidth(200);
+            productImage.setPreserveRatio(true);
+
+            Label productName = new Label(product.getProductName());
+            Label productPrice = new Label(String.valueOf(product.getProductPrice()));
+            Button cartButton = new Button("add to cart");
+            productBox.getChildren().addAll(productImage,productName,productPrice,cartButton);
+
+            productGrid.add(productBox,column,row);
+            if (column == 3){
+                column = 0;
+                row++;
+            }
         }
     }
 }
