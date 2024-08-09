@@ -31,19 +31,11 @@ public class CustomerDashboardController implements Initializable {
     @FXML
     ImageView productImage;
     @FXML
-    ImageView productImage1;
-    @FXML
-    ImageView productImage2;
-    @FXML
     Label productName;
     @FXML
     Label productPrice;
     @FXML
-    Button addToCart1;
-    @FXML
-    Button addToCart2;
-    @FXML
-    Button addToCart3;
+    Button addToCart;
 
     @FXML
     GridPane productGrid;
@@ -73,8 +65,6 @@ public class CustomerDashboardController implements Initializable {
         File file = new File("images/apple.png");
         Image image = new Image(file.toURI().toString());
         productImage.setImage(image);
-        productImage1.setImage(image);
-        productImage2.setImage(image);
         try {
             System.out.println(productService.getAllProduct());
             loadProduct();
@@ -97,16 +87,12 @@ public class CustomerDashboardController implements Initializable {
             productImage.setFitWidth(200);
             productImage.setPreserveRatio(true);
 
-            Label productName = new Label(product.getProductName());
-            Label productPrice = new Label(String.valueOf(product.getProductPrice()));
-            Button cartButton = new Button("add to cart");
-            productBox.getChildren().addAll(productImage,productName,productPrice,cartButton);
+            productName.setText(product.getProductName());
+            productPrice.setText("$" + product.getProductPrice());
+
+            productBox.getChildren().addAll(productImage,productName,productPrice,addToCart);
 
             productGrid.add(productBox,column,row);
-            if (column == 3){
-                column = 0;
-                row++;
-            }
         }
     }
 }

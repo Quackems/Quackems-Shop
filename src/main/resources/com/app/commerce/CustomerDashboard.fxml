@@ -36,11 +36,11 @@
          <!-- Example product layout for 3 products in a row -->
          <children>
             <!-- First product -->
-            <VBox>
+            <VBox fx:id="productVbox">
                <ImageView fx:id="productImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-               <Label fx:id="productName1" text="Product name" />
-               <Label fx:id="productPrice1" text="Price" />
-               <Button fx:id="addToCart1" mnemonicParsing="false" text="Add to cart">
+               <Label fx:id="productName" text="Product name" />
+               <Label fx:id="productPrice" text="Price" />
+               <Button fx:id="addToCart" mnemonicParsing="false" text="Add to cart">
                   <font>
                      <Font name="Arial Rounded MT Bold" size="15.0" />
                   </font>
@@ -54,27 +54,7 @@
             <RowConstraints />
          </rowConstraints>
       </GridPane>
-      <!-- Third product -->
-      <VBox layoutX="236.0" layoutY="37.0">
-         <ImageView fx:id="productImage2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-         <Label fx:id="productName3" text="Product name" />
-         <Label fx:id="productPrice3" text="Price" />
-         <Button fx:id="addToCart3" mnemonicParsing="false" text="Add to cart">
-            <font>
-               <Font name="Arial Rounded MT Bold" size="15.0" />
-            </font>
-         </Button>
-      </VBox>
-      <!-- Second product -->
-      <VBox layoutX="436.0" layoutY="37.0">
-         <ImageView fx:id="productImage1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-         <Label fx:id="productName2" text="Product name" />
-         <Label fx:id="productPrice2" text="Price" />
-         <Button fx:id="addToCart2" mnemonicParsing="false" text="Add to cart">
-            <font>
-               <Font name="Arial Rounded MT Bold" size="15.0" />
-            </font>
-         </Button>
-      </VBox>
+
+
    </children>
 </AnchorPane>
