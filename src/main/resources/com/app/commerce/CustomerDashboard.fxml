@@ -4,7 +4,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -30,7 +32,7 @@
             <Font name="Arial Rounded MT Bold" size="30.0" />
          </font>
       </Button>
-      <GridPane fx:id="productGrid" layoutX="41.0" layoutY="29.0" hgap="20.0" vgap="20.0">
+      <GridPane fx:id="productGrid" hgap="20.0" layoutX="36.0" layoutY="37.0" vgap="20.0">
          <!-- Example product layout for 3 products in a row -->
          <children>
             <!-- First product -->
@@ -44,29 +46,35 @@
                   </font>
                </Button>
             </VBox>
-            <!-- Second product -->
-            <VBox>
-               <ImageView fx:id="productImage1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-               <Label fx:id="productName2" text="Product name" />
-               <Label fx:id="productPrice2" text="Price" />
-               <Button fx:id="addToCart2" mnemonicParsing="false" text="Add to cart">
-                  <font>
-                     <Font name="Arial Rounded MT Bold" size="15.0" />
-                  </font>
-               </Button>
-            </VBox>
-            <!-- Third product -->
-            <VBox>
-               <ImageView fx:id="productImage2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-               <Label fx:id="productName3" text="Product name" />
-               <Label fx:id="productPrice3" text="Price" />
-               <Button fx:id="addToCart3" mnemonicParsing="false" text="Add to cart">
-                  <font>
-                     <Font name="Arial Rounded MT Bold" size="15.0" />
-                  </font>
-               </Button>
-            </VBox>
          </children>
+         <columnConstraints>
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
       </GridPane>
+      <!-- Third product -->
+      <VBox layoutX="236.0" layoutY="37.0">
+         <ImageView fx:id="productImage2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         <Label fx:id="productName3" text="Product name" />
+         <Label fx:id="productPrice3" text="Price" />
+         <Button fx:id="addToCart3" mnemonicParsing="false" text="Add to cart">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="15.0" />
+            </font>
+         </Button>
+      </VBox>
+      <!-- Second product -->
+      <VBox layoutX="436.0" layoutY="37.0">
+         <ImageView fx:id="productImage1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         <Label fx:id="productName2" text="Product name" />
+         <Label fx:id="productPrice2" text="Price" />
+         <Button fx:id="addToCart2" mnemonicParsing="false" text="Add to cart">
+            <font>
+               <Font name="Arial Rounded MT Bold" size="15.0" />
+            </font>
+         </Button>
+      </VBox>
    </children>
 </AnchorPane>
