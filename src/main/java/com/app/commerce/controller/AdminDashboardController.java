@@ -40,4 +40,6 @@ public class AdminDashboardController {
         stage.setTitle("Add product");
     }
 
+    //Make use of observableList to display all product in a table
+
 }
