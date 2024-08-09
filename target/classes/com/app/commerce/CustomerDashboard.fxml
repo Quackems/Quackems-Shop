@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.commerce.controller.CustomerDashboardController">
@@ -28,13 +30,43 @@
             <Font name="Arial Rounded MT Bold" size="30.0" />
          </font>
       </Button>
-      <ImageView fx:id="productImage" fitHeight="150.0" fitWidth="200.0" layoutX="41.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="productName" layoutX="41.0" layoutY="179.0" prefHeight="17.0" prefWidth="82.0" text="Product name" />
-      <Label fx:id="productPrice" layoutX="123.0" layoutY="179.0" prefHeight="17.0" prefWidth="82.0" text="Price" />
-      <Button fx:id="addToCart" layoutX="90.0" layoutY="202.0" mnemonicParsing="false"  text="Add to cart">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="15.0" />
-         </font>
-      </Button>
+      <GridPane fx:id="productGrid" layoutX="41.0" layoutY="29.0" hgap="20.0" vgap="20.0">
+         <!-- Example product layout for 3 products in a row -->
+         <children>
+            <!-- First product -->
+            <VBox>
+               <ImageView fx:id="productImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+               <Label fx:id="productName1" text="Product name" />
+               <Label fx:id="productPrice1" text="Price" />
+               <Button fx:id="addToCart1" mnemonicParsing="false" text="Add to cart">
+                  <font>
+                     <Font name="Arial Rounded MT Bold" size="15.0" />
+                  </font>
+               </Button>
+            </VBox>
+            <!-- Second product -->
+            <VBox>
+               <ImageView fx:id="productImage1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+               <Label fx:id="productName2" text="Product name" />
+               <Label fx:id="productPrice2" text="Price" />
+               <Button fx:id="addToCart2" mnemonicParsing="false" text="Add to cart">
+                  <font>
+                     <Font name="Arial Rounded MT Bold" size="15.0" />
+                  </font>
+               </Button>
+            </VBox>
+            <!-- Third product -->
+            <VBox>
+               <ImageView fx:id="productImage2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+               <Label fx:id="productName3" text="Product name" />
+               <Label fx:id="productPrice3" text="Price" />
+               <Button fx:id="addToCart3" mnemonicParsing="false" text="Add to cart">
+                  <font>
+                     <Font name="Arial Rounded MT Bold" size="15.0" />
+                  </font>
+               </Button>
+            </VBox>
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>
