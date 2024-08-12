@@ -66,11 +66,5 @@ public class CustomerLoginController {
             error.setContentText("Login Unsuccessful!");
             error.show();
         }
-
     }
-
-
-
-
-
 }

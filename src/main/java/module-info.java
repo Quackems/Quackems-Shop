@@ -6,6 +6,7 @@ module com.app.commerce {
 
     opens com.app.commerce to javafx.fxml;
     exports com.app.commerce;
+    exports com.app.commerce.entities;
     exports com.app.commerce.controller;
     opens com.app.commerce.controller to javafx.fxml;
 }

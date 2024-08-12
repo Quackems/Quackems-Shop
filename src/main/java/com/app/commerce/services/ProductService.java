@@ -25,6 +25,7 @@ public class ProductService {
             product.setProductId(result.getInt("product_id"));
             product.setProductPrice(result.getDouble("product_price"));
             product.setProductDescription(result.getString("product_description"));
+            product.setProductQuantity(result.getInt("product_quantity"));
             product.setProductName(result.getString("product_name"));
             products.add(product);
         }

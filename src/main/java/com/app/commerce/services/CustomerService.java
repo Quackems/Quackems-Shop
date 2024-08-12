@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CustomerService {
-    public int customerId;
+    public static int customerId;
     public boolean customerAuthentication(String email, String password) throws SQLException {
 
         boolean login = false;
