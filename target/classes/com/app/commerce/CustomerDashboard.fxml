@@ -33,26 +33,7 @@
          </font>
       </Button>
       <GridPane fx:id="productGrid" hgap="20.0" layoutX="36.0" layoutY="37.0" vgap="20.0">
-         <!-- Example product layout for 3 products in a row -->
-         <children>
-            <!-- First product -->
-            <VBox fx:id="productVbox">
-               <ImageView fx:id="productImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-               <Label fx:id="productName" text="Product name" />
-               <Label fx:id="productPrice" text="Price" />
-               <Button fx:id="addToCart" mnemonicParsing="false" text="Add to cart">
-                  <font>
-                     <Font name="Arial Rounded MT Bold" size="15.0" />
-                  </font>
-               </Button>
-            </VBox>
-         </children>
-         <columnConstraints>
-            <ColumnConstraints />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints />
-         </rowConstraints>
+         <!-- The products will be added dynamically here -->
       </GridPane>
 
 

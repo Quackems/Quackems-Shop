@@ -25,22 +25,13 @@ import java.util.ResourceBundle;
 
 public class CustomerDashboardController implements Initializable {
 
-    Stage stage;
     @FXML
-    Button customerLogOutBtn;
+    private Button customerLogOutBtn;
     @FXML
-    ImageView productImage;
-    @FXML
-    Label productName;
-    @FXML
-    Label productPrice;
-    @FXML
-    Button addToCart;
+    private GridPane productGrid;
 
-    @FXML
-    GridPane productGrid;
+    private final ProductService productService = new ProductService();
 
-    ProductService productService = new ProductService();
     @FXML
     public void customerLogOut() throws IOException {
         Stage stage = (Stage) customerLogOutBtn.getScene().getWindow();
@@ -49,50 +40,51 @@ public class CustomerDashboardController implements Initializable {
         stage.setTitle("Registration");
     }
 
-    public void openNewPage() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("customerLogin/fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-
-        Stage newStage = new Stage();
-        newStage.setTitle("Customer Registration");
-        newStage.setScene(scene);
-
-        newStage.show();
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        File file = new File("images/apple.png");
-        Image image = new Image(file.toURI().toString());
-        productImage.setImage(image);
         try {
-            System.out.println(productService.getAllProduct());
-            loadProduct();
+            loadProducts();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void loadProduct() throws SQLException {
-        File file = new File("images/apple.png");
-        Image image = new Image(file.toURI().toString());
+    private void loadProducts() throws SQLException {
         List<Product> allProducts = productService.getAllProduct();
         int column = 0;
         int row = 0;
 
-        for (Product product: allProducts){
-            VBox productBox = new VBox();
-            productImage.setImage(image);
-            productImage.setFitHeight(150);
-            productImage.setFitWidth(200);
-            productImage.setPreserveRatio(true);
+        for (Product product : allProducts) {
+            VBox productBox = createProductBox(product);
+            productGrid.add(productBox, column, row);
 
-            productName.setText(product.getProductName());
-            productPrice.setText("$" + product.getProductPrice());
-
-            productBox.getChildren().addAll(productImage,productName,productPrice,addToCart);
-
-            productGrid.add(productBox,column,row);
+            column++;
+            if (column == 3) {
+                column = 0;
+                row++;
+            }
         }
+    }
+
+    private VBox createProductBox(Product product) {
+        VBox productBox = new VBox();
+
+        ImageView productImage = new ImageView();
+        File file = new File("images/apple.png"); // Replace with actual product image path
+        Image image = new Image(file.toURI().toString());
+        productImage.setImage(image);
+        productImage.setFitHeight(150);
+        productImage.setFitWidth(200);
+        productImage.setPreserveRatio(true);
+
+        Label productName = new Label(product.getProductName());
+        Label productPrice = new Label("$" + product.getProductPrice());
+
+        Button addToCartButton = new Button("Add to cart");
+        addToCartButton.setFont(new javafx.scene.text.Font("Arial Rounded MT Bold", 15));
+
+        productBox.getChildren().addAll(productImage, productName, productPrice, addToCartButton);
+
+        return productBox;
     }
 }
