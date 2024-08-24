@@ -1,6 +1,10 @@
 package com.app.commerce.controller;
 
+import com.app.commerce.entities.Cart;
+import com.app.commerce.entities.Customer;
 import com.app.commerce.entities.Product;
+import com.app.commerce.services.CartService;
+import com.app.commerce.services.CustomerService;
 import com.app.commerce.services.ProductService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.w3c.dom.events.Event;
 
 import java.io.File;
 import java.io.IOException;
@@ -83,8 +88,22 @@ public class CustomerDashboardController implements Initializable {
         Button addToCartButton = new Button("Add to cart");
         addToCartButton.setFont(new javafx.scene.text.Font("Arial Rounded MT Bold", 15));
 
+        addToCartButton.setOnAction(event -> {
+            try {
+                addProduct(product.getProductId(), CustomerService.customerId);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
         productBox.getChildren().addAll(productImage, productName, productPrice, addToCartButton);
 
         return productBox;
     }
+
+    public void addProduct(int  productId, int customerId) throws SQLException {
+        CartService cartService = new CartService();
+        Cart cart = new Cart(productId, customerId);
+        cartService.addProductToCart(cart);
+    }
+
 }

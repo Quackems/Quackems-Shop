@@ -29,7 +29,7 @@ public class CustomerLoginController {
     Button registerBtn;
     @FXML
     Button closeBtn;
-    int customerId;
+    static int customerId;
 
     public Stage stage;
 

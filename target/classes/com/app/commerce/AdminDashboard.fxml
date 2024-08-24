@@ -9,13 +9,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.commerce.controller.AdminDashboardController">
    <children>
-      <TableView layoutX="140.0" layoutY="79.0" prefHeight="332.0" prefWidth="600.0">
+      <TableView fx:id="productTable" layoutX="140.0" layoutY="79.0" prefHeight="332.0" prefWidth="600.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Product ID" />
-          <TableColumn prefWidth="90.0" text="Product Name" />
-            <TableColumn prefWidth="88.0" text="Product Price" />
-            <TableColumn prefWidth="103.0" text="Product Quantity" />
-            <TableColumn prefWidth="243.0" text="Product Description" />
+          <TableColumn fx:id="productIdColumn" prefWidth="75.0" text="Product ID" />
+          <TableColumn fx:id="productNameColumn" prefWidth="90.0" text="Product Name" />
+            <TableColumn fx:id="productPriceColumn" prefWidth="88.0" text="Product Price" />
+            <TableColumn fx:id="productQuantityColumn" prefWidth="103.0" text="Product Quantity" />
+            <TableColumn fx:id="productDescriptionColumn" prefWidth="243.0" text="Product Description" />
         </columns>
       </TableView>
       <Button fx:id="adminAddProductBtn" layoutX="260.0" layoutY="427.0" mnemonicParsing="false" onAction="#adminAddProduct" prefHeight="53.0" prefWidth="95.0" text="Add Product">
