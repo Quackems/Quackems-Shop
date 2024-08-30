@@ -2,10 +2,11 @@ package com.app.commerce.services;
 
 import com.app.commerce.dbconnect.ConnectDB;
 import com.app.commerce.entities.Cart;
+import com.app.commerce.entities.CartInfo;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CartService {
     public void addProductToCart(Cart cart) throws SQLException {
@@ -19,13 +20,28 @@ public class CartService {
         preparedStatement.execute();
     }
 
-    public void getAllCartInformation() throws SQLException {
+    public List<CartInfo> getAllCartInformation() throws SQLException {
+        ArrayList<CartInfo> cartList = new ArrayList<>();
+        int customerID = CustomerService.customerId;
         Connection con = ConnectDB.connect();
-        String sql = "SELECT product.product_id, product.product_name, cart_id, product.product_description" +
+        String sql = "SELECT product.product_id, product.product_name, product.product_price, cart_id, product.product_description" +
                 " FROM cart INNER JOIN product ON product.product_id = cart.product_id " +
                 "WHERE customer_id = ?;";
 
+
         PreparedStatement preparedStatement = con.prepareStatement(sql);
+        preparedStatement.setInt(1, customerID);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()){
+            CartInfo cartInfo = new CartInfo();
+            cartInfo.setProductName(resultSet.getString("product_name"));
+            cartInfo.setProductPrice(resultSet.getDouble("product_price"));
+            cartInfo.setCartID(resultSet.getInt("cart_id"));
+            cartInfo.setProductDescription(resultSet.getString("product_description"));
+            cartList.add(cartInfo);
+
+        }
+        return cartList;
     }
 
 }

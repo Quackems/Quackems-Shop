@@ -35,7 +35,19 @@ public class CustomerDashboardController implements Initializable {
     @FXML
     private GridPane productGrid;
 
+    @FXML
+    Button viewCartBtn;
+
     private final ProductService productService = new ProductService();
+
+
+    @FXML
+    public void viewCart() throws SQLException, IOException {
+        Stage stage = (Stage) viewCartBtn.getScene().getWindow();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/app/commerce/ViewCart.fxml")));
+        stage.setScene(new Scene(root, 900, 600));
+        stage.setTitle("Cart");
+    }
 
     @FXML
     public void customerLogOut() throws IOException {

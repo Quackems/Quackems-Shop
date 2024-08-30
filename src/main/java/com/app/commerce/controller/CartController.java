@@ -1,5 +1,10 @@
 package com.app.commerce.controller;
 
+import com.app.commerce.entities.CartInfo;
+import com.app.commerce.services.CartService;
+import com.app.commerce.services.ProductService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,12 +12,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class CartController {
+
+    ObservableList<CartInfo> cartList;
 
 
     Stage stage;
@@ -23,6 +33,8 @@ public class CartController {
     @FXML
     Button backToCustomerDashboardBtn;
 
+    @FXML
+    TableView cartTable;
 
     @FXML
     TableColumn productNameColumn;
@@ -44,6 +56,18 @@ public class CartController {
         stage.setTitle("Customer dashboard");
     }
 
+
+    @FXML
+    public void initialize() throws SQLException {
+        productNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
+        productPriceColumn.setCellValueFactory(new PropertyValueFactory<>("productPrice"));
+        cartIdColumn.setCellValueFactory(new PropertyValueFactory<>("cartID"));
+        productDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("productDescription"));
+
+        CartService cartService = new CartService();
+        cartList = FXCollections.observableList(cartService.getAllCartInformation());
+        cartTable.setItems(cartList);
+    }
 
 
 
