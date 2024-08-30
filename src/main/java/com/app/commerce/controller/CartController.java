@@ -59,12 +59,13 @@ public class CartController {
 
     @FXML
     public void initialize() throws SQLException {
+        CartService cartService = new CartService();
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
         productPriceColumn.setCellValueFactory(new PropertyValueFactory<>("productPrice"));
         cartIdColumn.setCellValueFactory(new PropertyValueFactory<>("cartID"));
         productDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("productDescription"));
+        totalCostLabel.setText("Total Cost: $" + CartService.totalCost);
 
-        CartService cartService = new CartService();
         cartList = FXCollections.observableList(cartService.getAllCartInformation());
         cartTable.setItems(cartList);
     }

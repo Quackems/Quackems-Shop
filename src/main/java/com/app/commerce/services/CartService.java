@@ -9,6 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartService {
+
+    public static double totalCost;
+
+    public double getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
+    }
+
     public void addProductToCart(Cart cart) throws SQLException {
         String sql = "INSERT INTO cart VALUES (null, ?, ?)";
 
@@ -38,6 +49,7 @@ public class CartService {
             cartInfo.setProductPrice(resultSet.getDouble("product_price"));
             cartInfo.setCartID(resultSet.getInt("cart_id"));
             cartInfo.setProductDescription(resultSet.getString("product_description"));
+            totalCost += resultSet.getDouble("product_price");
             cartList.add(cartInfo);
 
         }
