@@ -17,7 +17,7 @@
             <TableColumn fx:id="productDescriptionColumn" prefWidth="267.0" text="Product Description" />
         </columns>
       </TableView>
-      <Button layoutX="712.0" layoutY="36.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="136.0" text="Delete Cart">
+      <Button fx:id="deleteCartContentBtn" layoutX="712.0" layoutY="36.0" mnemonicParsing="false" onAction="#deleteCartContent" prefHeight="77.0" prefWidth="136.0" text="Delete Cart">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
