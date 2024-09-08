@@ -74,10 +74,12 @@ public class AdminDashboardController {
             ProductService productService = new ProductService();
             productService.deleteProduct(product.getProductId());
             productList.remove(product);
+            //TODO: HANDLE EXEPTION OF PRODUCT TO ALLOW DELETION OF PRODUCT ALREADY IN A CART!
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("No Product Selected!");
             alert.show();
+            //TODO: CREATE CONFIRM DIALOGUE BEFORE DELETING PRODUCT!
         }
     }
 
