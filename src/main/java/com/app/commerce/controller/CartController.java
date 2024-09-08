@@ -24,6 +24,10 @@ public class CartController {
 
     ObservableList<CartInfo> cartList;
 
+    CartService cartService = new CartService();
+
+    public double totalCost = cartService.totalCost;
+
 
     Stage stage;
 
@@ -61,7 +65,7 @@ public class CartController {
 
     @FXML
     public void initialize() throws SQLException {
-        totalCostLabel.setText("Total Cost: $" + CartService.totalCost);
+        totalCostLabel.setText("Total Cost: $" + totalCost);
         CartService cartService = new CartService();
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
         productPriceColumn.setCellValueFactory(new PropertyValueFactory<>("productPrice"));

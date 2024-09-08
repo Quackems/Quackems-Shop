@@ -10,15 +10,7 @@ import java.util.List;
 
 public class CartService {
 
-    public static double totalCost;
-
-    public double getTotalCost() {
-        return totalCost;
-    }
-
-    public void setTotalCost(double totalCost) {
-        this.totalCost = totalCost;
-    }
+    public double totalCost;
 
     public void addProductToCart(Cart cart) throws SQLException {
         String sql = "INSERT INTO cart VALUES (null, ?, ?)";
