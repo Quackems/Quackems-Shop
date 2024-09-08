@@ -48,6 +48,7 @@ public class CartController {
     @FXML
     TableColumn productDescriptionColumn;
 
+
     @FXML
     public void backToCustomerDashboard() throws IOException {
         stage = (Stage) backToCustomerDashboardBtn.getScene().getWindow();
@@ -57,14 +58,16 @@ public class CartController {
     }
 
 
+
     @FXML
     public void initialize() throws SQLException {
+        totalCostLabel.setText("Total Cost: $" + CartService.totalCost);
         CartService cartService = new CartService();
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
         productPriceColumn.setCellValueFactory(new PropertyValueFactory<>("productPrice"));
         cartIdColumn.setCellValueFactory(new PropertyValueFactory<>("cartID"));
         productDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("productDescription"));
-        totalCostLabel.setText("Total Cost: $" + CartService.totalCost);
+
 
         cartList = FXCollections.observableList(cartService.getAllCartInformation());
         cartTable.setItems(cartList);

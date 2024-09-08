@@ -43,16 +43,18 @@ public class CartService {
         PreparedStatement preparedStatement = con.prepareStatement(sql);
         preparedStatement.setInt(1, customerID);
         ResultSet resultSet = preparedStatement.executeQuery();
+        double total = 0.0;
         while (resultSet.next()){
             CartInfo cartInfo = new CartInfo();
             cartInfo.setProductName(resultSet.getString("product_name"));
             cartInfo.setProductPrice(resultSet.getDouble("product_price"));
             cartInfo.setCartID(resultSet.getInt("cart_id"));
             cartInfo.setProductDescription(resultSet.getString("product_description"));
-            totalCost += resultSet.getDouble("product_price");
+            total += resultSet.getDouble("product_price");
             cartList.add(cartInfo);
-
+            totalCost = total;
         }
+        con.close();
         return cartList;
     }
 
