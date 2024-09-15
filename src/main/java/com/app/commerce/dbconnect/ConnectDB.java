@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectDB {
     public static Connection connect()throws SQLException {
         Connection con= DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/quackemsshop","root","SaifMisk20092006@");
+                "jdbc:mysql://localhost:3306/quackemsshop","root","");
         System.out.println("Connection successful!");
         return con;
     }
