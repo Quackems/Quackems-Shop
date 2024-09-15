@@ -23,7 +23,7 @@
             <Font name="Arial Black" size="11.0" />
          </font>
       </Button>
-      <Button fx:id="deleteProductBtn" layoutX="383.0" layoutY="427.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Delete Product">
+      <Button fx:id="deleteProductBtn" layoutX="383.0" layoutY="427.0" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="53.0" prefWidth="115.0" text="Delete Product">
          <font>
             <Font name="Arial Black" size="11.0" />
          </font>

@@ -8,17 +8,22 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ *
+ */
+
+
 public class CartService {
 
-    public static double totalCost;
 
-    public double getTotalCost() {
-        return totalCost;
-    }
+    public double totalCost;
 
-    public void setTotalCost(double totalCost) {
-        this.totalCost = totalCost;
-    }
+    /**
+     *
+     * @param cart
+     * @throws SQLException
+     */
 
     public void addProductToCart(Cart cart) throws SQLException {
         String sql = "INSERT INTO cart VALUES (null, ?, ?)";
@@ -30,6 +35,13 @@ public class CartService {
 
         preparedStatement.execute();
     }
+
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
 
     public List<CartInfo> getAllCartInformation() throws SQLException {
         ArrayList<CartInfo> cartList = new ArrayList<>();
@@ -56,6 +68,24 @@ public class CartService {
         }
         con.close();
         return cartList;
+    }
+
+
+    /**
+     *
+     * @param cartId
+     * @throws SQLException
+     */
+
+
+    public void removeCartItems(int cartId) throws SQLException {
+        Connection con = ConnectDB.connect();
+
+        String sql = "DELETE from cart WHERE cart_id = ?";
+
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
+        preparedStatement.setInt(1, cartId);
+        preparedStatement.execute();
     }
 
 }

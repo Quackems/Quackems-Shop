@@ -9,10 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -24,6 +21,10 @@ public class CartController {
 
     ObservableList<CartInfo> cartList;
 
+    CartService cartService = new CartService();
+
+    public double totalCost = cartService.totalCost;
+
 
     Stage stage;
 
@@ -32,6 +33,9 @@ public class CartController {
 
     @FXML
     Button backToCustomerDashboardBtn;
+
+    @FXML
+    Button deleteCartContentBtn;
 
     @FXML
     TableView cartTable;
@@ -58,10 +62,28 @@ public class CartController {
     }
 
 
+    @FXML
+    public void deleteCartContent() throws SQLException {
+        CartInfo cartInfo = (CartInfo) cartTable.getSelectionModel().getSelectedItem();
+
+        if (cartInfo != null) {
+            cartService.removeCartItems(cartInfo.getCartID());
+            cartList.remove(cartInfo);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("No Item Selected!");
+            alert.show();
+        }
+
+    }
+
+
+
+
 
     @FXML
     public void initialize() throws SQLException {
-        totalCostLabel.setText("Total Cost: $" + CartService.totalCost);
+        totalCostLabel.setText("Total Cost: $" + totalCost);
         CartService cartService = new CartService();
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
         productPriceColumn.setCellValueFactory(new PropertyValueFactory<>("productPrice"));

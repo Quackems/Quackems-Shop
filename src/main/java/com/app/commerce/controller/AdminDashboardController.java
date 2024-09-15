@@ -1,6 +1,7 @@
 package com.app.commerce.controller;
 
 import com.app.commerce.entities.Product;
+import com.app.commerce.services.AdminService;
 import com.app.commerce.services.ProductService;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
@@ -9,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -64,6 +66,27 @@ public class AdminDashboardController {
         stage.setScene(new Scene(root, 800, 600));
         stage.setTitle("Add product");
     }
+
+    @FXML
+    public void deleteProduct() throws SQLException {
+        Product product = productTable.getSelectionModel().getSelectedItem();
+        if (product != null) {
+            ProductService productService = new ProductService();
+            productService.deleteProduct(product.getProductId());
+            productList.remove(product);
+            //TODO: HANDLE EXEPTION OF PRODUCT TO ALLOW DELETION OF PRODUCT ALREADY IN A CART!
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("No Product Selected!");
+            alert.show();
+            //TODO: CREATE CONFIRM DIALOGUE BEFORE DELETING PRODUCT!
+        }
+    }
+
+
+
+
+
     @FXML
     public void initialize() throws SQLException {
         productIdColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
@@ -76,6 +99,11 @@ public class AdminDashboardController {
         productList = FXCollections.observableList(productService.getAllProduct());
         productTable.setItems(productList);
     }
+
+
+
+
+
 
     //Make use of observableList to display all product in a table
 

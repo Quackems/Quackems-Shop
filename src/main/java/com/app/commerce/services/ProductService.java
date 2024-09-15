@@ -33,4 +33,14 @@ public class ProductService {
         //Write the logic to loop through all the product details on the database
         return products;
     }
+
+    public void deleteProduct(int productId) throws SQLException {
+        Connection con = ConnectDB.connect();
+
+        String sql = "DELETE from product WHERE product_id = ?";
+
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
+        preparedStatement.setInt(1, productId);
+        preparedStatement.execute();
+    }
 }
