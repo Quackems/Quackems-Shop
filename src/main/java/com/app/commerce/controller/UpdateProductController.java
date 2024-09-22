@@ -1,6 +1,8 @@
 package com.app.commerce.controller;
 
 import com.app.commerce.dbconnect.ConnectDB;
+import com.app.commerce.entities.Product;
+import com.app.commerce.services.ProductService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,7 +21,7 @@ public class UpdateProductController {
     @FXML
     Button backToAdminDashboardBtn;
     @FXML
-    Button addProductBtn;
+    Button updateProductBtn;
     @FXML
     TextField addProductPriceTxt;
     @FXML
@@ -36,25 +38,31 @@ public class UpdateProductController {
         stage.setTitle("Admin Dashboard");
     }
     @FXML
-    public void addProduct() throws SQLException {
-        String productprice = addProductPriceTxt.getText();
-        String productquantity = addProductQuantityTxt.getText();
-        String productname = addProductNameTxt.getText();
-        String productdescription = addProductDescriptionTxt.getText();
-        Alert message = new Alert(Alert.AlertType.ERROR);
-        Alert success = new Alert(Alert.AlertType.CONFIRMATION);
-        if (productprice.isEmpty()||productquantity.isEmpty()||productname.isEmpty()||productdescription.isEmpty()){
-            message.setContentText("Not all fields are filled!");
-            message.show();
-        }
-        String sql = "insert into product values(null,?,?,?,?)";
-        PreparedStatement statement = ConnectDB.connect().prepareStatement(sql);
-        statement.setDouble(1,Double.parseDouble(productprice));
-        statement.setInt(2, Integer.parseInt(productquantity));
-        statement.setString(3,productname);
-        statement.setString(4,productdescription);
-        statement.execute();
-        success.setContentText("Product Creation Success!");
-        success.show();
+    public void updateProduct() throws SQLException {
+        Product product = new Product();
+
+        ProductService productService = new ProductService();
+
+
+        product.setProductName(addProductNameTxt.getText());
+
+        product.setProductPrice(Double.parseDouble(addProductPriceTxt.getText()));
+
+        product.setProductQuantity(Integer.parseInt(addProductQuantityTxt.getText()));
+
+        product.setProductDescription(addProductDescriptionTxt.getText());
+
+
+        productService.updateProduct(product);
     }
+
+    @FXML
+    public void initialize(){
+        addProductNameTxt.setText(AdminDashboardController.selectedProduct.getProductName());
+        addProductPriceTxt.setText(String.valueOf(AdminDashboardController.selectedProduct.getProductPrice()));
+        addProductQuantityTxt.setText(String.valueOf(AdminDashboardController.selectedProduct.getProductQuantity()));
+        addProductDescriptionTxt.setText(AdminDashboardController.selectedProduct.getProductDescription());
+    }
+
+
 }

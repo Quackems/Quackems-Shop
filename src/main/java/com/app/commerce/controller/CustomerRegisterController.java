@@ -53,15 +53,19 @@ public class CustomerRegisterController {
         if (checkpassword(customerpassword, customerconfirmpassword)){
             message("Passwords don't match!");
         }
-        String sql = "insert into customer values(null,?,?,?,?)";
-        PreparedStatement statement = ConnectDB.connect().prepareStatement(sql);
-        statement.setString(1,customername);
-        statement.setString(2,customerpassword);
-        statement.setString(3,customeremail);
-        statement.setString(4,customeraddress);
-        statement.execute();
-        success("Registration Successful");
+        else {
+            String sql = "insert into customer values(null,?,?,?,?)";
+            PreparedStatement statement = ConnectDB.connect().prepareStatement(sql);
+            statement.setString(1,customername);
+            statement.setString(2,customerpassword);
+            statement.setString(3,customeremail);
+            statement.setString(4,customeraddress);
+            statement.execute();
+            success("Registration Successful");
+        }
+
     }
+    //TODO: Fix Customer Registration
 
     public boolean checkpassword(String firstpassword, String secondsPassword){
         boolean check = false;

@@ -2,6 +2,7 @@ package com.app.commerce.controller;
 
 import com.app.commerce.entities.CartInfo;
 import com.app.commerce.services.CartService;
+import com.app.commerce.services.OrderService;
 import com.app.commerce.services.ProductService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,6 +37,9 @@ public class CartController {
 
     @FXML
     Button deleteCartContentBtn;
+
+    @FXML
+    Button checkOutBtn;
 
     @FXML
     TableView cartTable;
@@ -77,6 +81,14 @@ public class CartController {
 
     }
 
+
+
+    @FXML
+    public void checkOut() throws SQLException {
+        System.out.println("Checking Out!");
+        OrderService orderService = new OrderService();
+        orderService.addOrder();
+    }
 
 
 

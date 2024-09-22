@@ -23,6 +23,8 @@ import java.util.Objects;
 
 public class AdminDashboardController {
 
+    static Product selectedProduct;
+
     @FXML
     Button adminAddProductBtn;
     @FXML
@@ -73,14 +75,38 @@ public class AdminDashboardController {
         if (product != null) {
             ProductService productService = new ProductService();
             productService.deleteProduct(product.getProductId());
+
             productList.remove(product);
             //TODO: HANDLE EXEPTION OF PRODUCT TO ALLOW DELETION OF PRODUCT ALREADY IN A CART!
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("No Product Selected!");
             alert.show();
-            //TODO: CREATE CONFIRM DIALOGUE BEFORE DELETING PRODUCT!
+            //TODO: CREATE CONFIRM DIALOGUE BEFORE DELETING PRODUCT!x
         }
+    }
+
+
+
+    @FXML
+    public void updateProduct() throws IOException {
+        selectedProduct = productTable.getSelectionModel().getSelectedItem();
+
+        if (selectedProduct == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("No Product Selected!");
+            alert.show();
+        } else {
+            Stage stage = (Stage) updateProductBtn.getScene().getWindow();
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/app/commerce/updateProduct.fxml")));
+            stage.setScene(new Scene(root, 800, 600));
+            stage.setTitle("Update product");
+        }
+    }
+
+    @FXML
+    public void viewOrders(){
+
     }
 
 
@@ -105,6 +131,9 @@ public class AdminDashboardController {
 
 
 
-    //Make use of observableList to display all product in a table
+
+
+
+    //TODO: Make use of observableList to display all product in a table
 
 }

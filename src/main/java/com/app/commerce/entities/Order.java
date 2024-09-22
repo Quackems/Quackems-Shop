@@ -2,16 +2,30 @@ package com.app.commerce.entities;
 
 public class Order {
 
-    private int orderId;
-    private int productId;
-    private int customerId;
+    private String orderInformation;
 
-    public Order(int productId, int customerId) {
-        this.productId = productId;
-        this.customerId = customerId;
-    }
+    private int orderId;
+
+    private double totalCost;
+
 
     public Order() {
+
+    }
+
+
+    public Order(String orderInformation, int orderId, double totalCost) {
+        this.orderInformation = orderInformation;
+        this.orderId = orderId;
+        this.totalCost = totalCost;
+    }
+
+    public String getOrderInformation() {
+        return orderInformation;
+    }
+
+    public void setOrderInformation(String orderInformation) {
+        this.orderInformation = orderInformation;
     }
 
     public int getOrderId() {
@@ -22,19 +36,11 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public int getProductId() {
-        return productId;
+    public double getTotalCost() {
+        return totalCost;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
     }
 }

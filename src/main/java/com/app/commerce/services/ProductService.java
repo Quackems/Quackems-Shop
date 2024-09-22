@@ -43,4 +43,20 @@ public class ProductService {
         preparedStatement.setInt(1, productId);
         preparedStatement.execute();
     }
+
+    public void updateProduct(Product product) throws SQLException{
+        Connection con = ConnectDB.connect();
+
+        String sql = "UPDATE product SET product_name = ?, product_price = ?, product_quantity = ?, product_description = ?";
+
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
+        preparedStatement.setString(1, product.getProductName());
+        preparedStatement.setDouble(2, product.getProductPrice());
+        preparedStatement.setInt(3, product.getProductQuantity());
+        preparedStatement.setString(4, product.getProductDescription());
+        preparedStatement.execute();
+
+    }
+
+
 }

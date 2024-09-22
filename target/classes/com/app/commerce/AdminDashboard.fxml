@@ -28,7 +28,7 @@
             <Font name="Arial Black" size="11.0" />
          </font>
       </Button>
-      <Button fx:id="updateProductBtn" layoutX="521.0" layoutY="427.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="115.0" text="Update Product">
+      <Button fx:id="updateProductBtn" layoutX="521.0" layoutY="427.0" mnemonicParsing="false" onAction="#updateProduct" prefHeight="53.0" prefWidth="115.0" text="Update Product">
          <font>
             <Font name="Arial Black" size="11.0" />
          </font>
