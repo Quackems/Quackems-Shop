@@ -32,5 +32,10 @@
             <Font size="20.0" />
          </font>
       </Label>
+      <Button fx:id="checkOutBtn" layoutX="713.0" layoutY="210.0" mnemonicParsing="false" onAction="#checkOut" prefHeight="77.0" prefWidth="136.0" text="Check Out">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="19.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
