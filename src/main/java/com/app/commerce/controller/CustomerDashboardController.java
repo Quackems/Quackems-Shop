@@ -2,9 +2,11 @@ package com.app.commerce.controller;
 
 import com.app.commerce.entities.Cart;
 import com.app.commerce.entities.Customer;
+import com.app.commerce.entities.Order;
 import com.app.commerce.entities.Product;
 import com.app.commerce.services.CartService;
 import com.app.commerce.services.CustomerService;
+import com.app.commerce.services.OrderService;
 import com.app.commerce.services.ProductService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,6 +39,8 @@ public class CustomerDashboardController implements Initializable {
 
     @FXML
     Button viewCartBtn;
+    @FXML
+    Button orderHistoryBtn;
 
     private final ProductService productService = new ProductService();
 
@@ -56,6 +60,15 @@ public class CustomerDashboardController implements Initializable {
         stage.setScene(new Scene(root, 600, 400));
         stage.setTitle("Registration");
     }
+
+    @FXML
+    public void orderHistory() throws SQLException, IOException {
+        Stage stage = (Stage) customerLogOutBtn.getScene().getWindow();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/app/commerce/CustomerViewOrders.fxml")));
+        stage.setScene(new Scene(root, 800, 500));
+        stage.setTitle("Order History");
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -117,5 +130,6 @@ public class CustomerDashboardController implements Initializable {
         Cart cart = new Cart(productId, customerId);
         cartService.addProductToCart(cart);
     }
+
 
 }

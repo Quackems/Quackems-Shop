@@ -2,11 +2,15 @@ package com.app.commerce.entities;
 
 public class Order {
 
-    private String orderInformation;
+    private String productInformation;
 
     private int orderId;
 
     private double totalCost;
+
+    private int customer_id;
+
+    private String orderStatus;
 
 
     public Order() {
@@ -14,18 +18,20 @@ public class Order {
     }
 
 
-    public Order(String orderInformation, int orderId, double totalCost) {
-        this.orderInformation = orderInformation;
+    public Order(String orderInformation, int orderId, double totalCost, int customer_id, String orderStatus) {
+        this.productInformation = orderInformation;
         this.orderId = orderId;
         this.totalCost = totalCost;
+        this.customer_id = customer_id;
+        this.orderStatus = orderStatus;
     }
 
-    public String getOrderInformation() {
-        return orderInformation;
+    public String getProductInformation() {
+        return productInformation;
     }
 
-    public void setOrderInformation(String orderInformation) {
-        this.orderInformation = orderInformation;
+    public void setProductInformation(String productInformation) {
+        this.productInformation = productInformation;
     }
 
     public int getOrderId() {
@@ -42,5 +48,33 @@ public class Order {
 
     public void setTotalCost(double totalCost) {
         this.totalCost = totalCost;
+    }
+
+
+    public int getCustomer_id() {
+        return customer_id;
+    }
+
+    public void setCustomer_id(int customer_id) {
+        this.customer_id = customer_id;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "productInformation='" + productInformation + '\'' +
+                ", orderId=" + orderId +
+                ", totalCost=" + totalCost +
+                ", customer_id=" + customer_id +
+                ", orderStatus='" + orderStatus + '\'' +
+                '}';
     }
 }

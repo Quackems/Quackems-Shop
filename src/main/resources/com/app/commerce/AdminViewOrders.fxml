@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="703.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.commerce.AdminViewOrders">
+   <children>
+      <TableView fx:id="adminViewCustomerOrdersTable" layoutX="14.0" layoutY="14.0" prefHeight="672.0" prefWidth="880.0">
+        <columns>
+          <TableColumn fx:id="customer_id_column" prefWidth="75.0" text="Customer ID" />
+          <TableColumn fx:id="customer_name_column" prefWidth="112.0" text="Customer Name" />
+            <TableColumn fx:id="customer_address_column" prefWidth="124.0" text="Customer Address" />
+            <TableColumn fx:id="customer_email_column" prefWidth="99.0" text="Customer Email" />
+            <TableColumn fx:id="order_information_column" prefWidth="469.0" text="Order Information">
+               <columns>
+                  <TableColumn fx:id="total_price_column" prefWidth="75.0" text="Total Price" />
+                  <TableColumn fx:id="poduct_description_column" prefWidth="155.0" text="Product Description" />
+                  <TableColumn fx:id="product_name_column" minWidth="0.0" prefWidth="96.0" text="Product Name" />
+                  <TableColumn fx:id="order_status_column" prefWidth="79.0" text="Order Status" />
+                  <TableColumn fx:id="order_id_column" prefWidth="64.0" text="Order ID" />
+               </columns>
+            </TableColumn>
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

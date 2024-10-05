@@ -71,8 +71,12 @@ public class CartController {
         CartInfo cartInfo = (CartInfo) cartTable.getSelectionModel().getSelectedItem();
 
         if (cartInfo != null) {
-            cartService.removeCartItems(cartInfo.getCartID());
-            cartList.remove(cartInfo);
+            Alert deleteConfirm = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this product", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+            deleteConfirm.showAndWait();
+            if (deleteConfirm.getResult() == ButtonType.YES) {
+                cartService.removeCartItems(cartInfo.getCartID());
+                cartList.remove(cartInfo);
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("No Item Selected!");
@@ -85,9 +89,15 @@ public class CartController {
 
     @FXML
     public void checkOut() throws SQLException {
-        System.out.println("Checking Out!");
-        OrderService orderService = new OrderService();
-        orderService.addOrder();
+        Alert confirmCheckOut = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you would like to check out?", ButtonType.YES, ButtonType.NO, ButtonType.CLOSE);
+        confirmCheckOut.showAndWait();
+        if (confirmCheckOut.getResult() == ButtonType.YES) {
+            Alert confirmed = new Alert(Alert.AlertType.INFORMATION);
+            confirmed.setContentText("Your order has been placed");
+            confirmed.show();
+            OrderService orderService = new OrderService();
+            orderService.addOrder();
+        }
     }
 
 

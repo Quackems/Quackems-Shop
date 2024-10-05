@@ -10,10 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -76,13 +73,16 @@ public class AdminDashboardController {
             ProductService productService = new ProductService();
             productService.deleteProduct(product.getProductId());
 
-            productList.remove(product);
-            //TODO: HANDLE EXEPTION OF PRODUCT TO ALLOW DELETION OF PRODUCT ALREADY IN A CART!
+
+            Alert deleteConfirm = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this product", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+            deleteConfirm.showAndWait();
+            if (deleteConfirm.getResult() == ButtonType.YES) {
+                productList.remove(product);
+            }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("No Product Selected!");
             alert.show();
-            //TODO: CREATE CONFIRM DIALOGUE BEFORE DELETING PRODUCT!x
         }
     }
 

@@ -33,7 +33,7 @@
             <Font name="Arial Black" size="11.0" />
          </font>
       </Button>
-      <Button fx:id="viewOrdersBtn" layoutX="260.0" layoutY="501.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="95.0" text="View orders">
+      <Button fx:id="viewOrdersBtn" layoutX="260.0" layoutY="501.0" mnemonicParsing="false" onAction="#viewOrders" prefHeight="53.0" prefWidth="95.0" text="View orders">
          <font>
             <Font name="Arial Black" size="11.0" />
          </font>
