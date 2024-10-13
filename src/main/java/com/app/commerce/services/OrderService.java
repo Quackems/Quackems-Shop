@@ -1,10 +1,7 @@
 package com.app.commerce.services;
 
 import com.app.commerce.dbconnect.ConnectDB;
-import com.app.commerce.entities.Cart;
-import com.app.commerce.entities.CartInfo;
-import com.app.commerce.entities.Customer;
-import com.app.commerce.entities.Order;
+import com.app.commerce.entities.*;
 import javafx.scene.control.Alert;
 
 import java.sql.Connection;
@@ -78,6 +75,31 @@ public class OrderService {
             customerOrder.setCustomer_id(resultSet.getInt("customer_id"));
             customerOrder.setOrderStatus(resultSet.getString("order_status"));
             list.add(customerOrder);
+        }
+        return list;
+    }
+
+    public List<OrderInformation> getOrdersForAdmin() throws SQLException {
+        Connection con = ConnectDB.connect();
+        List<OrderInformation> list = new ArrayList<>();
+        String sql = "SELECT customer.customer_name, customer.customer_email, customer.customer_address, order_information.product_information, " +
+                "order_information.total_price, order_information.order_status," +
+                " order_information.order_id FROM order_information INNER JOIN customer ON order_information.customer_id = " +
+                "customer.customer_id";
+
+        PreparedStatement preparedStatement= con.prepareStatement(sql);
+        preparedStatement.execute();
+        ResultSet resultSet = preparedStatement.getResultSet();
+        while (resultSet.next()) {
+            OrderInformation information = new OrderInformation();
+            information.setCustomerAddress(resultSet.getString("customer_address"));
+            information.setCustomerEmail(resultSet.getString("customer_email"));
+            information.setCustomerName(resultSet.getString("customer_name"));
+            information.setProductInformation(resultSet.getString("product_information"));
+            information.setProductPrice(resultSet.getDouble("total_price"));
+            information.setOrderStatus(resultSet.getString("order_status"));
+            information.setOrderId(resultSet.getInt("order_id"));
+            list.add(information);
         }
         return list;
     }

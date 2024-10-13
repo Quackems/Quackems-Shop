@@ -2,6 +2,7 @@ package com.app.commerce.controller;
 
 import com.app.commerce.entities.Product;
 import com.app.commerce.services.AdminService;
+import com.app.commerce.services.OrderService;
 import com.app.commerce.services.ProductService;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
@@ -105,8 +106,11 @@ public class AdminDashboardController {
     }
 
     @FXML
-    public void viewOrders(){
-
+    public void viewOrders() throws SQLException, IOException {
+        Stage stage = (Stage) viewOrdersBtn.getScene().getWindow();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/app/commerce/AdminViewOrders.fxml")));
+        stage.setScene(new Scene(root, 1000, 700));
+        stage.setTitle("Admin View Orders");
     }
 
 
