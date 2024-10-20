@@ -17,6 +17,10 @@ public class OrderInformation {
     private int orderId;
 
 
+    public OrderInformation(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
     public OrderInformation() {
 
     }

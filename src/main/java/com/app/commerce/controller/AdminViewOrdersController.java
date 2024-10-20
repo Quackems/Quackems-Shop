@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -23,6 +24,9 @@ public class AdminViewOrdersController {
 
     @FXML
     Button backToAdminDashboardBtn;
+
+    @FXML
+    Button updateStatusBtn;
 
     @FXML
     TableColumn order_id_column;
@@ -48,6 +52,10 @@ public class AdminViewOrdersController {
     @FXML
     TableView adminViewCustomerOrdersTable;
 
+
+    static OrderInformation selectedOrderInformation;
+
+
     @FXML
     public void backToAdminDashboard() throws IOException {
         Stage stage = (Stage) backToAdminDashboardBtn.getScene().getWindow();
@@ -55,6 +63,24 @@ public class AdminViewOrdersController {
         stage.setScene(new Scene(root, 850, 600));
         stage.setTitle("Admin Dashboard");
     }
+
+    @FXML
+    public void updateStatus() throws IOException {
+        selectedOrderInformation = (OrderInformation) adminViewCustomerOrdersTable.getSelectionModel().getSelectedItem();
+
+        if (selectedOrderInformation == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("No Order is Selected!");
+            alert.show();
+        } else {
+            Stage stage = (Stage) updateStatusBtn.getScene().getWindow();
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/app/commerce/UpdateOrderStatus.fxml")));
+            stage.setScene(new Scene(root, 700, 500));
+            stage.setTitle("Update Order Status");
+        }
+
+    }
+
 
     public void initialize() throws SQLException {
         order_id_column.setCellValueFactory(new PropertyValueFactory<>("orderId"));

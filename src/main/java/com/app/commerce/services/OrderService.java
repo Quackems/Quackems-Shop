@@ -104,6 +104,24 @@ public class OrderService {
         return list;
     }
 
+    public void updateOrders(OrderInformation orderInformation, int orderId) throws SQLException {
+        Connection con = ConnectDB.connect();
+
+
+
+
+        String sql =  "UPDATE order_information SET order_information.order_status = ? WHERE order_information.order_id = ?";
+        PreparedStatement preparedStatement = con.prepareStatement(sql);
+        preparedStatement.setString(1, orderInformation.getOrderStatus());
+        preparedStatement.setInt(2, orderId);
+        preparedStatement.execute();
+
+
+
+
+
+    }
+
 
 
 
