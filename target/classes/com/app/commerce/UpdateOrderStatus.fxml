@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.commerce.controller.UpdateOrderStatusController">
+   <children>
+      <TextArea fx:id="orderStatusText" layoutX="29.0" layoutY="25.0" prefHeight="200.0" prefWidth="631.0" promptText="Order Status" />
+      <Button fx:id="updateOrderStatusBtn" layoutX="248.0" layoutY="266.0" mnemonicParsing="false" onAction="#updateOrderStatus" prefHeight="100.0" prefWidth="205.0" text="UPDATE ORDER STATUS">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="backToAdminDashboardBtn" layoutX="578.0" layoutY="418.0" mnemonicParsing="false" onAction="#backToAdminDashboard" prefHeight="68.0" prefWidth="108.0" style="-fx-background-color: #C41717;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

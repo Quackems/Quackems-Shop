@@ -1,9 +1,11 @@
 package com.app.commerce.controller;
 
+import com.app.commerce.entities.Order;
 import com.app.commerce.entities.Product;
 import com.app.commerce.services.AdminService;
 import com.app.commerce.services.OrderService;
 import com.app.commerce.services.ProductService;
+import com.app.commerce.threads.OrderChecker;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +22,10 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class AdminDashboardController {
+
+    OrderChecker orderChecker = new OrderChecker();
+    Thread thread = new Thread(orderChecker);
+
 
     static Product selectedProduct;
 
@@ -54,6 +60,7 @@ public class AdminDashboardController {
 
     @FXML
     public void adminLogOut() throws IOException {
+//        thread.stop();
         Stage stage = (Stage) adminLogOutBtn.getScene().getWindow();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/app/commerce/AdminLogin.fxml")));
         stage.setScene(new Scene(root, 600, 400));
@@ -128,16 +135,13 @@ public class AdminDashboardController {
         ProductService productService = new ProductService();
         productList = FXCollections.observableList(productService.getAllProduct());
         productTable.setItems(productList);
+
+
+        thread.start();
+        if (!orderChecker.orderMessage.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText(orderChecker.orderMessage);
+            alert.show();
+        }
     }
-
-
-
-
-
-
-
-
-    //TODO: MAKE VIEW ADMIN ORDERS PAGE.
-    //TODO: Make use of observableList to display all product in a table
-
 }
