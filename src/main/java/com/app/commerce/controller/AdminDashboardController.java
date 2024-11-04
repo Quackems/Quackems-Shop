@@ -23,7 +23,7 @@ import java.util.Objects;
 
 public class AdminDashboardController {
 
-    OrderChecker orderChecker = new OrderChecker();
+    OrderChecker orderChecker = new OrderChecker(this);
     Thread thread = new Thread(orderChecker);
 
 
@@ -60,7 +60,8 @@ public class AdminDashboardController {
 
     @FXML
     public void adminLogOut() throws IOException {
-//        thread.stop();
+        thread.interrupt();
+
         Stage stage = (Stage) adminLogOutBtn.getScene().getWindow();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/app/commerce/AdminLogin.fxml")));
         stage.setScene(new Scene(root, 600, 400));
@@ -138,10 +139,6 @@ public class AdminDashboardController {
 
 
         thread.start();
-        if (!orderChecker.orderMessage.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText(orderChecker.orderMessage);
-            alert.show();
-        }
+
     }
 }
